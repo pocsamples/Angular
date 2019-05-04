@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerService } from '../services/customer.service';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,9 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
   imports: [
     CommonModule,
     CustomersRoutingModule
+  ],
+  providers: [
+    CustomerService
   ]
 })
 export class CustomersModule { }
