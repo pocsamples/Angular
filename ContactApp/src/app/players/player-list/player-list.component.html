@@ -4,7 +4,24 @@
 <div>
   Player List
   <div *ngFor="let player of this.players">
-    <div [appHighlighter]="highlighterColor">{{player.name}}</div>
-    <div>{{player.skill}}</div>
+    <div [appHighlighter]="highlighterColor">Name: {{player.name}}</div>
+    <div>Skill: {{player.skill}}</div>
+    <div>-----</div>
   </div>
 </div>
+
+
+<form [formGroup]="addPlayerFormGroup">
+  <div>Add Player</div>
+  <div>
+    Name:
+    <input type="text" formControlName="name" />
+  </div>
+  <div>
+    Skill:
+    <input type="text" formControlName="skill" />
+  </div>
+  <div>
+    <button (click)="addPlayerClick()">Add</button>
+  </div>
+</form>
