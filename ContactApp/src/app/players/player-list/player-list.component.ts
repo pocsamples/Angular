@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { takeWhile } from 'rxjs/operators';
+
 import { PlayerService } from 'src/app/services/player.service';
 import { IPlayer } from 'src/app/model/player';
 import { Store, select } from '@ngrx/store';
+import * as fromPlayer from '../player.reducer';
 
 @Component({
   selector: 'app-player-list',
@@ -15,10 +18,12 @@ export class PlayerListComponent implements OnInit, OnDestroy {
   private addPlayerFormGroup: FormGroup;
   private playerToAdd: IPlayer;
   private displayNickName: boolean;
+  private componentActive: boolean;
 
-  constructor(private playerService: PlayerService, private fb: FormBuilder, private store: Store<any>) {
-    this.highlighterColor = "yellow";
+  constructor(private playerService: PlayerService, private fb: FormBuilder, private store: Store<fromPlayer.State>) {
     console.log(`constructor`);
+    this.componentActive = true;
+    this.highlighterColor = "yellow";
   }
 
   ngOnInit() {
@@ -36,17 +41,19 @@ export class PlayerListComponent implements OnInit, OnDestroy {
       nickName: [this.playerToAdd.nickName, [Validators.required]],
     });
 
-    this.store.pipe(select('players')).subscribe(
-      players => {
-        if (players) {
-          console.log(`players from store: ${JSON.stringify(players)}`);
-          this.displayNickName = players.displayNickName;
+    this.store.pipe(
+      select(fromPlayer.getDisplayNickName),
+      takeWhile(() => this.componentActive))
+      .subscribe(
+        displayNickName => {
+          console.log(`players from store: ${JSON.stringify(displayNickName)}`);
+          this.displayNickName = displayNickName;
         }
-      }
-    );
+      );
   }
 
   ngOnDestroy() {
+    this.componentActive = false;
   }
 
   addPlayerClick(): void {
@@ -62,7 +69,7 @@ export class PlayerListComponent implements OnInit, OnDestroy {
 
   checkChanged(value: boolean): void {
     this.store.dispatch({
-      type: 'SHOW_CAPTAIN',
+      type: 'SHOW_NICKNAME',
       payload: value,
     });
   }
