@@ -1,4 +1,4 @@
-export interface ICustomer {
+export interface IPlayer {
     name: String;
     skill: String;
 }

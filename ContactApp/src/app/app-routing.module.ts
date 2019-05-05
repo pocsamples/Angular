@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CustomersModule } from './customers/customers.module';
+import { PlayersModule } from './players/players.module';
 import { OrdersModule } from './orders/orders.module';
 
 const routes: Routes = [
   {
-    path: 'customers',
-    loadChildren: './customers/customers.module#CustomersModule', // This line does lazy loading CustomersModule. Whenever user click on button "Customers", this module gets loaded.
-    //loadChildren: () => CustomersModule // This line loads CustomersModule inside main.js in browser Network tab at startup itself. Does not do lazy loading.
+    path: 'players',
+    loadChildren: './players/players.module#PlayersModule', // This line does lazy loading PlayersModule. Whenever user click on button "Players", this module gets loaded.
+    //loadChildren: () => PlayersModule // This line loads PlayersModule inside main.js in browser Network tab at startup itself. Does not do lazy loading.
     //That will load Services used by components as well.
   },
   {

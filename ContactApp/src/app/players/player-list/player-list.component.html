@@ -1,0 +1,10 @@
+<p>
+  Player-list works!
+</p>
+<div>
+  Player List
+  <div *ngFor="let player of this.players">
+    <div [appHighlighter]="highlighterColor">{{player.name}}</div>
+    <div>{{player.skill}}</div>
+  </div>
+</div>
