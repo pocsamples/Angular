@@ -6,6 +6,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { IPlayer } from 'src/app/model/player';
 import { Store, select } from '@ngrx/store';
 import * as fromPlayer from '../player.reducer';
+import * as playerActions from '../player.action';
 
 @Component({
   selector: 'app-player-list',
@@ -68,9 +69,6 @@ export class PlayerListComponent implements OnInit, OnDestroy {
   }
 
   checkChanged(value: boolean): void {
-    this.store.dispatch({
-      type: 'SHOW_NICKNAME',
-      payload: value,
-    });
+    this.store.dispatch(new playerActions.ToggleNickNameAction(value));
   }
 }

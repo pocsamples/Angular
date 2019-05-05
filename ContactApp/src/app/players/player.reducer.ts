@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromRoot from '../app.state';
 import { IPlayer } from '../model/player';
+import { PlayerActions, PlayerActionTypes } from './player.action';
 
 // State
 export interface State extends fromRoot.State {
@@ -26,11 +27,9 @@ export const getDisplayNickName = createSelector(
 );
 
 // Reducer
-export function reducer(state = initialPlayerState, action): PlayerState {
+export function reducer(state = initialPlayerState, action: PlayerActions): PlayerState {
     switch (action.type) {
-        case 'SHOW_NICKNAME':
-            console.log(`state: ${JSON.stringify(state)}`);
-            console.log(`action.payload: ${JSON.stringify(action.payload)}`);
+        case PlayerActionTypes.ToggleNickName:
             return {
                 ...state,
                 displayNickName: action.payload
