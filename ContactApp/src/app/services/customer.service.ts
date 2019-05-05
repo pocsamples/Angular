@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ICustomer } from '../model/customer';
 
 @Injectable(
   /*{
@@ -9,6 +12,12 @@ import { Injectable } from '@angular/core';
   }*/
 )
 export class CustomerService {
+  // to access json resource, add "app/services/data/" from the url in angular.json at "assets" section
+  private url: string = 'app/services/data/customers.json';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getCustomers(): Observable<ICustomer[]> {
+    return this.http.get<ICustomer[]>(this.url);
+  }
 }

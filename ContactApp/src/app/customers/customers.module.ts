@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
@@ -13,6 +14,7 @@ import { HighlighterDirective } from './customer-list/highlighter.directive';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     CustomersRoutingModule
   ],
   providers: [
