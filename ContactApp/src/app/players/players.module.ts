@@ -7,6 +7,8 @@ import { PlayersRoutingModule } from './players-routing.module';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerService } from '../services/player.service';
 import { HighlighterDirective } from './player-list/highlighter.directive';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './player.reducer';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { HighlighterDirective } from './player-list/highlighter.directive';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    
+    StoreModule.forFeature('players', reducer),
+
     PlayersRoutingModule
   ],
   providers: [

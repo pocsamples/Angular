@@ -4,9 +4,18 @@
 <div>
   Player List
   <div *ngFor="let player of this.players">
-    <div [appHighlighter]="highlighterColor">Name: {{player.name}}</div>
-    <div>Skill: {{player.skill}}</div>
+    <div [appHighlighter]="highlighterColor">Name: {{player.name}}
+      <span *ngIf="displayNickName">
+        {{player.nickName}}
+      </span>
+    </div>
+    <div>Skill: {{player.skill}}
+    </div>
     <div>-----</div>
+  </div>
+  <div>
+    <input type="checkbox" (change)="checkChanged($event.target.checked)" [checked]="displayNickName">
+    Display NickName
   </div>
 </div>
 
@@ -20,6 +29,10 @@
   <div>
     Skill:
     <input type="text" formControlName="skill" />
+  </div>
+  <div>
+    Nick Name:
+    <input type="text" formControlName="nickName" />
   </div>
   <div>
     <button (click)="addPlayerClick()">Add</button>

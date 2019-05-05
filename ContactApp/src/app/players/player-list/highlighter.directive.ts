@@ -11,13 +11,13 @@ export class HighlighterDirective {
 
   @HostListener('mouseenter')
   onmouseenter() {
-    console.log("mouseenter");
+    //console.log("mouseenter");
     this.highlight(this.highlightColor);
   }
 
   @HostListener('mouseleave')
   onmouseleave() {
-    console.log("mouseleave");
+    //console.log("mouseleave");
     this.highlight(null);
   }
 

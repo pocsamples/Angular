@@ -1,10 +1,12 @@
 [
     {
         "name": "Dhoni",
-        "skill": "Batsman WK"
+        "skill": "Batsman",
+        "nickName": "MSD"
     },
     {
         "name": "Youraj",
-        "skill": "Batsman Bowler"
+        "skill": "Batsman",
+        "nickName": "Yuvi"
     }
 ]
